@@ -1,0 +1,28 @@
+.dtc__aigc__markdown {
+    table {
+        width: 100%;
+        font-size: 12px;
+        color: #3d446e;
+        background-color: #fff;
+        overflow: auto;
+    }
+    table th,
+    table td {
+        padding: 6px 13px;
+        border: 1px solid #ebecf0;
+    }
+    table thead {
+        text-align: left;
+    }
+    table thead th {
+        font-weight: 500;
+        background-color: #f9f9fa;
+    }
+    table thead th:not(:last-child) {
+        border-right: 1px solid #ebecf0;
+    }
+    img {
+        max-width: 100%;
+        background-color: #fff;
+    }
+}
