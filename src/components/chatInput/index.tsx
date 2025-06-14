@@ -9,9 +9,12 @@ import {
 } from 'antd';
 import type { RcFile } from 'antd/lib/upload';
 import { TextAreaProps } from 'antd/lib/input/TextArea';
-import { CloseCircleFilled, PaperClipOutlined } from '@ant-design/icons';
+import {
+    CloseCircleFilled,
+    PaperClipOutlined,
+    ArrowUpOutlined,
+} from '@ant-design/icons';
 import classNames from 'classnames';
-import { Chat } from 'dt-react-component';
 import service from '../../service';
 import { convertFileToBase64 } from '../../utils';
 import { getConfig } from '../../utils/config';
@@ -123,11 +126,10 @@ export default function ChatInput({
             } else {
                 message.error(`File upload failed.`);
             }
-        } catch (error) {
+        } catch {
             message.error(`File upload failed.`);
         } finally {
             setUploading(false);
-            return false;
         }
     };
 
@@ -175,14 +177,15 @@ export default function ChatInput({
                     maxRows: 7,
                 }}
             />
-            <Chat.Icon.SendIcon
-                gradient={!disableSend}
+            <div
                 className={classNames(
                     'demo__chat__textarea__send',
                     disableSend && 'demo__chat__textarea__send--disabled'
                 )}
                 onClick={() => !disableSend && onSubmit?.(rest.value)}
-            />
+            >
+                <ArrowUpOutlined />
+            </div>
             {config?.ENABLE_UPLOAD_FILE && (
                 <Upload
                     className="demo__chat__textarea__upload"

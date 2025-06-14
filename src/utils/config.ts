@@ -9,8 +9,8 @@ const API_CONFIG_KEY = 'CHAT_API_CONFIG';
 
 export async function fetchConfig(): Promise<AppConfig> {
     try {
-        const localConfig = getConfig();
-        if (localConfig) return localConfig;
+        // const localConfig = getConfig();
+        // if (localConfig) return localConfig;
 
         const response = await fetch(`/config.json?version=${Date.now()}`);
         const config = await response.json();

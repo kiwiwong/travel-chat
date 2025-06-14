@@ -18,13 +18,13 @@ export function sse<P = any>(
         Authorization: `Bearer ${API_KEY}`,
     };
     const baseParams = {
-        response_mode: 'streaming',
-        user: 'admin',
-        inputs: {},
+        // response_mode: 'streaming',
+        // user: 'admin',
+        // inputs: {},
     };
     const { onerror, ...rest } = options || {};
 
-    fetchEventSource(`${API_URL}${url}`, {
+    fetchEventSource(url, {
         method: 'POST',
         body: JSON.stringify({ ...baseParams, ...(params || {}) }),
         credentials: 'same-origin',
@@ -42,10 +42,10 @@ function request(url: string, options: Record<string, any>) {
     if (!config) return;
     const { API_URL, API_KEY } = config;
     const headers = {
-        Authorization: `Bearer ${API_KEY}`,
+        // Authorization: `Bearer ${API_KEY}`,
         ...(options.headers || {}),
     };
-    return fetch(`${API_URL}${url}`, {
+    return fetch(url, {
         credentials: 'same-origin',
         headers,
         ...options,
@@ -73,5 +73,12 @@ function buildFormData(params: Record<string, any>) {
 export function postAsFormData(url: string, params?: Record<string, any>) {
     const options: Record<string, any> = { method: 'POST' };
     if (params) options.body = buildFormData(params);
+    return request(url, options);
+}
+
+export function post(url: string, body?: any, signal?: AbortSignal) {
+    const options: Record<string, any> = { method: 'POST' };
+    if (body) options.body = JSON.stringify(body);
+    if (signal) options.signal = signal;
     return request(url, options);
 }

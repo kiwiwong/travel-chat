@@ -1,6 +1,6 @@
 .demo__chat__textarea__container {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid #d8dae2;
     background: #fff;
     position: relative;
@@ -14,24 +14,33 @@
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        padding: 8px 36px 26px 12px;
+        padding: 8px 40px 26px 12px;
         &:focus {
             box-shadow: none;
         }
     }
     .demo__chat__textarea__send {
-        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
         position: absolute;
         bottom: 8px;
         right: 8px;
-        &:hover:not(&--disabled) {
-            &.dtc__icon path {
-                fill: url(#paint0_linear_3878_6538_hover);
-            }
-        }
+        background-color: #1c1e21;
+        color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        // &:hover:not(&--disabled) {
+        //     &.dtc__icon path {
+        //         fill: url(#paint0_linear_3878_6538_hover);
+        //     }
+        // }
         &--disabled {
             cursor: not-allowed;
-            color: #b1b4c5;
+            background-color: #7a7d84;
         }
     }
     .demo__chat__textarea__upload {

@@ -2,7 +2,11 @@ import { useRef } from 'react';
 
 import service from '../service';
 
-export type EventType = 'workflow_finished' | 'message_end' | 'error';
+export type EventType =
+    | 'workflow_finished'
+    | 'message_end'
+    | 'error'
+    | 'message';
 
 export default function useAIChat() {
     const abortController = useRef<AbortController | undefined>(undefined);

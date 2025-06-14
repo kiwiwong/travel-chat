@@ -1,5 +1,82 @@
 @import url('./markdown.scss');
 
-.dtc__welcome {
-    border-radius: 8px;
+.dtc__aigc__content__container {
+    .dtc__welcome {
+        background: none;
+        border: none;
+    }
+
+    .dtc__welcome__content {
+        background: none;
+    }
+
+    .dtc__message__avatar {
+        height: 24px;
+        background: none;
+        font-size: 24px;
+        color: #1c1e21;
+    }
+
+    .dtc__message__content {
+        padding: 2px 8px;
+        background: none;
+    }
+
+    .dtc__welcome__avatar {
+        height: 32px;
+        line-height: 32px;
+        font-size: 32px;
+        color: #1c1e21;
+    }
+
+    .dtc__prompt__content {
+        border-radius: 12px;
+        background-color: #e9e9e9;
+    }
+
+    .dtc__message__container .dtc__message__stopBtn {
+        color: #0d0d0d;
+        &:hover {
+            color: #808080;
+        }
+    }
+
+    .dtc__aigc__loading > div:nth-child(1) {
+        animation: 0.6s linear 0s infinite alternate loadingDark;
+    }
+
+    .dtc__aigc__loading > div:nth-child(2) {
+        animation: 0.6s linear 0.2s infinite alternate loadingDark;
+    }
+
+    .dtc__aigc__loading > div:nth-child(3) {
+        animation: 0.6s linear 0.4s infinite alternate loadingDark;
+    }
+
+    .dtc__aigc__markdown--blink > *:last-child::after {
+        content: '';
+    }
+
+    .dtc__aigc__content__inner__holder {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@keyframes loadingDark {
+    0% {
+        width: 4px;
+        height: 4px;
+        background-color: #fff;
+    }
+    50% {
+        width: 5px;
+        height: 5px;
+        background-color: #808080;
+    }
+    100% {
+        width: 6px;
+        height: 6px;
+        background-color: #0d0d0d;
+    }
 }
