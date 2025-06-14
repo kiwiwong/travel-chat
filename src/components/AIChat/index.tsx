@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
-import type { Components } from 'react-markdown';
-import { Button, message } from 'antd';
+import React, { useEffect, useState, useRef } from 'react';
+import { message } from 'antd';
 import rehypeRaw from 'rehype-raw';
 import { Chat } from 'dt-react-component';
 import {
@@ -8,8 +7,7 @@ import {
     Message,
     Prompt,
 } from 'dt-react-component/esm/chat/entity';
-import CustomTSX from '../customTSX';
-import ChatInput, { type IFile, Mode } from '../chatInput';
+import ChatInput from '../chatInput';
 import useCreateSession from '../../hooks/useCreateSession';
 import useChat from '../../hooks/useChat';
 import { IMarker } from '../../types';
@@ -49,36 +47,12 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
     const { sessionId } = useCreateSession();
 
     const [value, setValue] = useState<string | undefined>('');
-    const [convert, setConvert] = useState(false);
-    const [file, setFile] = useState<IFile | undefined>();
-    const [mode, setMode] = useState<Mode>(Mode.KNOWLEDGE);
 
     const currentTaskId = useRef('');
 
     useEffect(() => {
         chat.conversation.create({ id: new Date().valueOf().toString() });
     }, []);
-
-    const generatePromptStr = (text?: string, file?: IFile) => {
-        if (!file) return text;
-
-        switch (file.type) {
-            case 'jpg':
-            case 'jpeg':
-            case 'png': {
-                return file.base64
-                    ? `![image](${file.base64})  \n${text}`
-                    : text;
-            }
-            case 'xls':
-            case 'xlsx':
-            case 'pdf': {
-                return `${text}  \n\`${file.name}\``;
-            }
-            default:
-                return text;
-        }
-    };
 
     const replaceIcon = () => {
         const elems = document.querySelectorAll('.dtc__message__avatar');
@@ -89,14 +63,12 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
 
     const handleSubmit = (raw = value) => {
         const val = raw?.trim();
-        const uploadfile = file;
-        if (chat.loading() || (!val && !file)) return;
+        if (chat.loading() || !val) return;
 
-        const promptStr = generatePromptStr(val, uploadfile);
+        const promptStr = val;
         if (!promptStr) return;
 
         setValue('');
-        setFile(undefined);
         currentTaskId.current = '';
 
         const promptId = new Date().valueOf().toString();
@@ -158,34 +130,6 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
         });
     };
 
-    const components = useMemo(
-        () =>
-            ({
-                a: ({ children }) => (
-                    <Button
-                        type="primary"
-                        size="small"
-                        ghost
-                        onClick={() => setConvert((p) => !p)}
-                    >
-                        {children}
-                    </Button>
-                ),
-                tsx: ({ type, node }: any, _: any, { messageId }: any) => {
-                    return (
-                        <React.Suspense fallback={<Chat.Loading loading />}>
-                            <CustomTSX
-                                key={messageId}
-                                type={type}
-                                data={node}
-                            />
-                        </React.Suspense>
-                    );
-                },
-            } as Components),
-        []
-    );
-
     const handleStop = (data: Message, prompt: Prompt) => {
         chatReq.abort();
         chat.message.update(prompt.id, data.id, {
@@ -198,17 +142,13 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
             style={{
                 ...style,
                 width: '100%',
-                height: 'calc(100vh - 145px)',
+                height: 'calc(100vh - 200px)',
                 marginBottom: 56,
             }}
         >
             <Chat
                 chat={chat}
                 rehypePlugins={[rehypeRaw]}
-                codeBlock={{
-                    convert,
-                }}
-                components={components}
                 regenerate={false}
                 copy={{
                     formatText: (content) =>
@@ -246,20 +186,13 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
                 />
                 <ChatInput
                     value={value}
-                    mode={mode}
                     onChange={setValue}
                     onPressEnter={() => handleSubmit()}
                     onPressShiftEnter={() => setValue((v) => v + '\n')}
-                    onModeChange={(mode) => setMode(mode)}
                     button={{
-                        disabled:
-                            chat.loading() ||
-                            (!value?.trim() && !file) ||
-                            (file && !file.id),
+                        disabled: chat.loading() || !value?.trim(),
                     }}
                     placeholder="请输入想咨询的内容…"
-                    file={file}
-                    setFile={(file) => setFile(file)}
                     onSubmit={() => handleSubmit()}
                 />
             </Chat>

@@ -2,31 +2,23 @@ import {
     fetchEventSource,
     FetchEventSourceInit,
 } from '@microsoft/fetch-event-source';
-import { getConfig } from '../utils/config';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function sse<P = any>(
     url: string,
     params?: P,
     options?: FetchEventSourceInit
 ) {
-    const config = getConfig();
-    if (!config) return;
-    const { API_URL, API_KEY } = config;
     const headers = {
         'Content-Type': 'application/json',
         Accept: 'text/event-stream',
-        Authorization: `Bearer ${API_KEY}`,
-    };
-    const baseParams = {
-        // response_mode: 'streaming',
-        // user: 'admin',
-        // inputs: {},
     };
     const { onerror, ...rest } = options || {};
 
-    fetchEventSource(url, {
+    fetchEventSource(`${API_URL}${url}`, {
         method: 'POST',
-        body: JSON.stringify({ ...baseParams, ...(params || {}) }),
+        body: JSON.stringify(params || {}),
         credentials: 'same-origin',
         headers,
         onerror(err) {
@@ -38,14 +30,10 @@ export function sse<P = any>(
 }
 
 function request(url: string, options: Record<string, any>) {
-    const config = getConfig();
-    if (!config) return;
-    const { API_URL, API_KEY } = config;
     const headers = {
-        // Authorization: `Bearer ${API_KEY}`,
         ...(options.headers || {}),
     };
-    return fetch(url, {
+    return fetch(`${API_URL}${url}`, {
         credentials: 'same-origin',
         headers,
         ...options,

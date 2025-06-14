@@ -1,13 +1,13 @@
 .demo__chat__textarea__container {
     width: 100%;
-    border-radius: 12px;
-    border: 1px solid #d8dae2;
+    padding: 24px;
     background: #fff;
     position: relative;
     max-width: 800px;
     margin: 0 auto;
     .demo__chat__textarea {
-        border: none;
+        border-radius: 12px;
+        border: 1px solid #d8dae2;
         background-color: transparent;
         color: #3d446e;
         font-size: 12px;
@@ -17,6 +17,10 @@
         padding: 8px 40px 26px 12px;
         &:focus {
             box-shadow: none;
+            border-color: #d8dae2;
+        }
+        &:hover {
+            border-color: #d8dae2;
         }
     }
     .demo__chat__textarea__send {
@@ -27,8 +31,8 @@
         height: 32px;
         font-size: 16px;
         position: absolute;
-        bottom: 8px;
-        right: 8px;
+        bottom: 36px;
+        right: 36px;
         background-color: #1c1e21;
         color: #fff;
         border-radius: 50%;

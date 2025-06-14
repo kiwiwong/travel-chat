@@ -1,0 +1,28 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.home__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 46px;
+    border-bottom: 1px solid #ebecf0;
+    padding: 0 24px;
+}
+
+.home__content {
+    display: flex;
+    flex: 1;
+}
+
+.home__map {
+    flex: 1;
+    height: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left: 1px solid #ebecf0;
+    overflow: hidden;
+}
