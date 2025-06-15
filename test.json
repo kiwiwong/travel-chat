@@ -1,0 +1,25 @@
+{
+    "content": {
+        "parts": [
+            {
+                "text": "以下是新疆的一些推荐景点：\n\n1. **天山天池**\n   - 地址：新疆昌吉回族自治州阜康市境内\n   - 亮点：高山湖泊，风景优美，是夏季避暑胜地。\n   - 评分：4.6\n   - [地图链接](https://www.amap.com/place/B03E20002Z)\n   - [详情链接](https://www.amap.com/detail/B03E20002Z?citycode=0994)\n   ![图片](http://store.is.autonavi.com/showpic/88fc405ea55a9935ab1818fdb5473086)\n\n2. **喀纳斯湖**\n   - 地址：新疆阿勒泰地区布尔津县\n   - 亮点：神秘的高山湖泊，被誉为‘人间仙境’。\n   - 评分：4.8\n   - [地图链接](https://www.amap.com/place/B0FFFQ6VG0)\n   - [详情链接](https://www.amap.com/detail/B0FFFQ6VG0?citycode=0906)\n   ![图片](http://store.is.autonavi.com/showpic/2fda89d62e446fd341293b24ea46f118)\n\n3. **吐鲁番火焰山**\n   - 地址：新疆吐鲁番市高昌区\n   - 亮点：红色砂岩地貌，夏季炎热，景色壮观。\n   - 评分：4.3\n   - [地图链接](https://www.amap.com/place/B0FFFTMYIO)\n   - [详情链接](https://www.amap.com/detail/B0FFFTMYIO?citycode=0995)\n   ![图片](http://store.is.autonavi.com/showpic/038f3b0baa07620e13554fa8b3c18ebc)\n\n4. **赛里木湖**\n   - 地址：新疆博尔塔拉蒙古自治州博乐市\n   - 亮点：大西洋最后一滴眼泪，湖水清澈碧蓝。\n   - 评分：4.7\n   - [地图链接](https://www.amap.com/place/B038D0LN3D)\n   - [详情链接](https://www.amap.com/detail/B038D0LN3D?citycode=0909)\n   ![图片](http://store.is.autonavi.com/showpic/b9525fee05ebe4b885dcda1378db0f53)\n\n5. **那拉提草原**\n   - 地址：新疆伊犁哈萨克自治州新源县\n   - 亮点：广袤的高山草原，风光秀美，适合骑马和露营。\n   - 评分：4.5\n   - [地图链接](https://www.amap.com/place/B03E70MJKW)\n   - [详情链接](https://www.amap.com/detail/B03E70MJKW?citycode=0999)\n   ![图片](http://store.is.autonavi.com/showpic/7c256f7d830811623142aad7e45b1a50)\n\n6. **可可托海国家地质公园**\n   - 地址：新疆阿勒泰地区富蕴县\n   - 亮点：壮丽的峡谷、河流与森林景观，具有独特的地质价值。\n   - 评分：4.4\n   - [地图链接](https://www.amap.com/place/B038A0LOO7)\n   - [详情链接](https://www.amap.com/detail/B038A0LOO7?citycode=0906)\n   ![图片](http://store.is.autonavi.com/showpic/cc04fdc6a3e9fc025b062fbf30b0e378)\n\n7. **昭苏油菜花田**\n   - 地址：新疆伊犁哈萨克自治州昭苏县\n   - 亮点：每年夏季盛开的金黄色油菜花田，景色非常震撼。\n   - 评分：4.7\n   - [地图链接](https://www.amap.com/place/B0FFG6J5ZW)\n   - [详情链接](https://www.amap.com/detail/B0FFG6J5ZW?citycode=0999)\n   ![图片](https://aos-comment.amap.com/B0FFG6J5ZW/comment/5a136d4ca44800f28461f18ac5f93630_2048_2048_80.jpg)\n\n这些地方涵盖了自然美景、文化体验和探险活动等多种旅游体验。你对其中哪个景点更感兴趣呢？是否需要进一步了解？\n<TSX>[{\"name\": \"天山天池\", \"long\": 43.881317, \"lat\": 88.129005}, {\"name\": \"喀纳斯湖\", \"long\": 48.82663, \"lat\": 87.055797}, {\"name\": \"吐鲁番火焰山\", \"long\": 42.918783, \"lat\": 89.513296}, {\"name\": \"赛里木湖\", \"long\": 44.615064, \"lat\": 81.386234}, {\"name\": \"那拉提草原\", \"long\": 43.239725, \"lat\": 84.023757}, {\"name\": \"可可托海国家地质公园\", \"long\": 47.222081, \"lat\": 89.884211}, {\"name\": \"库尔勒市巴音布鲁克草原\", \"long\": 0.0, \"lat\": 0.0}, {\"name\": \"乌鲁木齐国际大巴扎\", \"long\": 0.0, \"lat\": 0.0}, {\"name\": \"塔克拉玛干沙漠\", \"long\": 0.0, \"lat\": 0.0}, {\"name\": \"昭苏油菜花田\", \"long\": 43.123525, \"lat\": 81.192308}]</TSX>"
+            }
+        ],
+        "role": "model"
+    },
+    "partial": false,
+    "usageMetadata": {
+        "candidatesTokenCount": 1099,
+        "promptTokenCount": 2921,
+        "totalTokenCount": 4020
+    },
+    "invocationId": "e-9e382fdf-a17c-4552-8e73-393ebcae82df",
+    "author": "inspiration_agent",
+    "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+    },
+    "id": "SHEAXCHz",
+    "timestamp": 1749965045.160503
+}

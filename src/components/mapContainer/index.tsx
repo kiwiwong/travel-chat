@@ -9,9 +9,13 @@ const gaodeSecretCode = import.meta.env.VITE_GAODE_MAP_SECRET_CODE;
 
 interface IMapContainerProps {
     markers: IMarker[];
+    className?: string;
 }
 
-export default function MapContainer({ markers }: IMapContainerProps) {
+export default function MapContainer({
+    markers,
+    className,
+}: IMapContainerProps) {
     const AMapRef = useRef<any>(null);
     const mapRef = useRef<any>(null);
 
@@ -93,5 +97,5 @@ export default function MapContainer({ markers }: IMapContainerProps) {
         };
     }, [markers]);
 
-    return <div id="mapContainer" style={{ height: '100%' }}></div>;
+    return <div id="mapContainer" className={className}></div>;
 }

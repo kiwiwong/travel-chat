@@ -39,9 +39,16 @@ const svgLogoStr = `
 interface IAIChatProps {
     updateMarkers: (markers: IMarker[]) => void;
     style?: React.CSSProperties;
+    onChatStatusChange?: (status: 'loading' | 'completed' | 'init') => void;
+    status?: 'loading' | 'completed' | 'init';
 }
 
-export default function AIChat({ style, updateMarkers }: IAIChatProps) {
+export default function AIChat({
+    style,
+    status,
+    updateMarkers,
+    onChatStatusChange,
+}: IAIChatProps) {
     const chat = Chat.useChat();
     const chatReq = useChat();
     const { sessionId } = useCreateSession();
@@ -86,11 +93,14 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
                     role: 'user',
                     parts: [{ text: val }],
                 },
-                streaming: true,
+                streaming: false,
             },
             {
                 onopen() {
                     chat.start(promptId, messageId);
+                    if (status === 'init') {
+                        onChatStatusChange?.('loading');
+                    }
                 },
                 onmessage(msg, taskId) {
                     chat.push(promptId, messageId, msg);
@@ -102,16 +112,25 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
                 },
                 oncomplete(msg) {
                     const { json, str } = extractAndRemoveAllTSX<IMarker>(msg);
-                    console.log(str, json);
                     chat.message.update(promptId, messageId, {
                         content: str,
                     });
                     if (json.length > 0) {
-                        updateMarkers(json);
+                        const markers = json
+                            .filter(
+                                (item) => item.name && item.long && item.lat
+                            )
+                            .map((item) => ({
+                                name: item.name,
+                                long: item.lat,
+                                lat: item.long,
+                            }));
+                        updateMarkers(markers);
                     }
                 },
                 onclose() {
                     chat.close(promptId, messageId);
+                    onChatStatusChange?.('completed');
                 },
                 onerror(error) {
                     message.error(error || '请求失败！');
@@ -135,6 +154,7 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
         chat.message.update(prompt.id, data.id, {
             status: MessageStatus.STOPPED,
         });
+        onChatStatusChange?.('completed');
     };
 
     return (
@@ -172,8 +192,8 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
                             }}
                         >
                             <Chat.Welcome
-                                title="嗨，近来可好 👋"
-                                description="你想去哪里？我可以帮你规划你的旅行。"
+                                title="嘿，你的专属旅行助手上线啦！👋"
+                                description="想去哪玩？和我聊两句，马上出发～"
                                 icon={React.createElement('span', {
                                     className: 'dtc__welcome__avatar',
                                     dangerouslySetInnerHTML: {
@@ -192,7 +212,7 @@ export default function AIChat({ style, updateMarkers }: IAIChatProps) {
                     button={{
                         disabled: chat.loading() || !value?.trim(),
                     }}
-                    placeholder="请输入想咨询的内容…"
+                    placeholder="询问任何问题"
                     onSubmit={() => handleSubmit()}
                 />
             </Chat>

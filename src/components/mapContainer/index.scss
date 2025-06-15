@@ -1,4 +1,8 @@
 #mapContainer {
+    position: relative;
+    height: 100%;
+    z-index: 4;
+
     .amap-logo,
     .amap-copyright {
         display: none !important;

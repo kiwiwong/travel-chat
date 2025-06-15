@@ -19,10 +19,17 @@
 }
 
 .home__map {
+    position: relative;
     flex: 1;
     height: 100%;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     border-left: 1px solid #ebecf0;
     overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+
+    &--hidden {
+        opacity: 0;
+    }
 }
